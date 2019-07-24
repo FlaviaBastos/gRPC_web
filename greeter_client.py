@@ -15,6 +15,7 @@
 
 from __future__ import print_function
 import logging
+import sys
 
 import grpc
 
@@ -27,10 +28,13 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     with grpc.insecure_channel('localhost:50051') as channel:
+        name = 'you'
+        if len(sys.argv) > 1:
+            name = sys.argv[1]
         stub = helloworld_pb2_grpc.GreeterStub(channel)
-        response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
+        response = stub.SayHello(helloworld_pb2.HelloRequest(name=name))
         print("Greeter client received: " + response.message)
-        response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name='you'))
+        response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name=name))
         print("Again greeter client received: " + response.message)
 
 
