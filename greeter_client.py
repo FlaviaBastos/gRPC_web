@@ -27,16 +27,19 @@ def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
-    with grpc.insecure_channel('localhost:50051') as channel:
-        name = 'you'
-        if len(sys.argv) > 1:
-            name = sys.argv[1]
-        stub = helloworld_pb2_grpc.GreeterStub(channel)
-        response = stub.SayHello(helloworld_pb2.HelloRequest(name=name))
-        print("Greeter client received: " + response.message)
-        response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name=name))
-        print("Again greeter client received: " + response.message)
-
+    name = 'you'
+    if len(sys.argv) > 1:
+        with grpc.insecure_channel(f'{sys.argv[1]}:50051') as channel:
+            print(f'Connecting to: {sys.argv[1]}:50051')
+            if len(sys.argv) > 2:
+                name = sys.argv[2]
+            stub = helloworld_pb2_grpc.GreeterStub(channel)
+            response = stub.SayHello(helloworld_pb2.HelloRequest(name=name))
+            print("Greeter client received: " + response.message)
+            response = stub.SayHelloAgain(helloworld_pb2.HelloRequest(name=name))
+            print("Again greeter client received: " + response.message)
+    else:
+        print("Please enter server's IP address to connect")
 
 if __name__ == '__main__':
     logging.basicConfig()

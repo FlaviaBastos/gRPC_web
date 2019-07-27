@@ -16,6 +16,8 @@
 from concurrent import futures
 import time
 import logging
+import subprocess
+import re
 
 import grpc
 
@@ -23,7 +25,7 @@ import helloworld_pb2
 import helloworld_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
+IP_REGEX = re.compile(r'.*(inet (.*) brd).*')
 
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
@@ -35,6 +37,9 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
 
 def serve():
+    out = subprocess.run(["ip", "add", "show"], stdout=subprocess.PIPE)
+    ip_used = IP_REGEX.match(str(out.stdout))
+    print(f'Container running on IP: {ip_used.group(2)}')
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
     server.add_insecure_port('[::]:50051')
