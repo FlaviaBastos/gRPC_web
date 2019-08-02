@@ -20,6 +20,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN npm install npm@latest -g
+RUN npm install --save-dev webpack@4.x
 
 # instal protoc for JS
 RUN wget -O /usr/local/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.9.0/protoc-3.9.0-linux-x86_64.zip
