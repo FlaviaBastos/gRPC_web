@@ -15,4 +15,20 @@ RUN python -m pip install grpcio-tools
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -y && apt install vim -y
 
+# JS client reqs
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN npm install npm@latest -g
+
+# instal protoc for JS
+RUN wget -O /usr/local/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protoc-3.7.1-linux-x86_64.zip
+RUN chmod +x /usr/local/protoc.zip
+RUN apt install unzip
+RUN unzip /usr/local/protoc.zip
+
+# install protoc-gen-grpc-web
+RUN wget -O /usr/local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/1.0.4/protoc-gen-grpc-web-1.0.4-linux-x86_64
+RUN chmod +x /usr/local/bin/protoc-gen-grpc-web
+
 COPY . ./src
