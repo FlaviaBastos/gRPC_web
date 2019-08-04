@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>gRPC-Web Example</title>
+</head>
+<body>
+    <h2>Hello, gRPC web!</h2>
+    <div class="container">
+        <div class="info">
+            <div class="fields">
+                <label for="name-field">Your name: </label>
+                <input type="text" id="name-field">
+            </div>
+            <button class="send-button">Send</button>
+            <p>gRPC says: <span class="name">...</span></p>
+        </div>
+        <div class="response">
+        </div>
+    </div>
+</body>
+<style>
+    :root {
+        --grpc-dark: #266B6B;;
+        --grpc-light: #0CC1C8;
+        --grpc-back: #EBF2F2;
+        --white: #FFFFFF;
+        --main-color: var(--grpc-dark);
+	}
+    html {
+		    background: var(--white);
+		    background-size: cover;
+    }
+    h2 {
+        color: var(--grpc-dark);
+        text-align: center;
+        margin: 60px;
+    }
+    .container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-flow: row wrap;
+	}
+    body, input, button {
+        font-size: 22px;
+        font-family: sans-serif;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .fields {
+        display: flex;
+    }
+    label {
+        margin-right: 5px;
+    }
+    input {
+        border: none;
+        background: var(--grpc-back);
+        padding: 10px;
+    }
+    input:focus {
+        background: var(--grpc-back);
+    }
+    button {
+        border: none;
+        border-radius: 25px;
+        background: var(--grpc-light);
+        padding: 10px 20px;
+        margin-top: 30px;
+    }
+    p {
+        display: flex;
+        margin-top: 80px;
+    }
+    .name {
+        padding-left: 40px;
+    }
+</style>
+<script src="./dist/main.js"></script>
+</html>
