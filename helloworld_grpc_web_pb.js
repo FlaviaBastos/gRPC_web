@@ -88,6 +88,25 @@ proto.helloworld.GreeterPromiseClient =
 
 /**
  * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.helloworld.HelloRequest,
+ *   !proto.helloworld.HelloReply>}
+ */
+const methodDescriptor_Greeter_SayHello = new grpc.web.MethodDescriptor(
+  '/helloworld.Greeter/SayHello',
+  grpc.web.MethodType.UNARY,
+  proto.helloworld.HelloRequest,
+  proto.helloworld.HelloReply,
+  /** @param {!proto.helloworld.HelloRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.helloworld.HelloReply.deserializeBinary
+);
+
+
+/**
+ * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.helloworld.HelloRequest,
  *   !proto.helloworld.HelloReply>}
@@ -118,7 +137,7 @@ proto.helloworld.GreeterClient.prototype.sayHello =
       '/helloworld.Greeter/SayHello',
       request,
       metadata || {},
-      methodInfo_Greeter_SayHello,
+      methodDescriptor_Greeter_SayHello,
       callback);
 };
 
@@ -137,23 +156,42 @@ proto.helloworld.GreeterPromiseClient.prototype.sayHello =
       '/helloworld.Greeter/SayHello',
       request,
       metadata || {},
-      methodInfo_Greeter_SayHello);
+      methodDescriptor_Greeter_SayHello);
 };
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.helloworld.HelloRequest,
+ *   !proto.helloworld.CheckReply>}
+ */
+const methodDescriptor_Greeter_IsPalindromic = new grpc.web.MethodDescriptor(
+  '/helloworld.Greeter/IsPalindromic',
+  grpc.web.MethodType.UNARY,
+  proto.helloworld.HelloRequest,
+  proto.helloworld.CheckReply,
+  /** @param {!proto.helloworld.HelloRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.helloworld.CheckReply.deserializeBinary
+);
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.helloworld.HelloRequest,
- *   !proto.helloworld.HelloReply>}
+ *   !proto.helloworld.CheckReply>}
  */
-const methodInfo_Greeter_SayHelloAgain = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.helloworld.HelloReply,
+const methodInfo_Greeter_IsPalindromic = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.helloworld.CheckReply,
   /** @param {!proto.helloworld.HelloRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.helloworld.HelloReply.deserializeBinary
+  proto.helloworld.CheckReply.deserializeBinary
 );
 
 
@@ -162,18 +200,18 @@ const methodInfo_Greeter_SayHelloAgain = new grpc.web.AbstractClientBase.MethodI
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.helloworld.HelloReply)}
+ * @param {function(?grpc.web.Error, ?proto.helloworld.CheckReply)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.helloworld.HelloReply>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.helloworld.CheckReply>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.helloworld.GreeterClient.prototype.sayHelloAgain =
+proto.helloworld.GreeterClient.prototype.isPalindromic =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/helloworld.Greeter/SayHelloAgain',
+      '/helloworld.Greeter/IsPalindromic',
       request,
       metadata || {},
-      methodInfo_Greeter_SayHelloAgain,
+      methodDescriptor_Greeter_IsPalindromic,
       callback);
 };
 
@@ -183,16 +221,16 @@ proto.helloworld.GreeterClient.prototype.sayHelloAgain =
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.helloworld.HelloReply>}
+ * @return {!Promise<!proto.helloworld.CheckReply>}
  *     A native promise that resolves to the response
  */
-proto.helloworld.GreeterPromiseClient.prototype.sayHelloAgain =
+proto.helloworld.GreeterPromiseClient.prototype.isPalindromic =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/helloworld.Greeter/SayHelloAgain',
+      '/helloworld.Greeter/IsPalindromic',
       request,
       metadata || {},
-      methodInfo_Greeter_SayHelloAgain);
+      methodDescriptor_Greeter_IsPalindromic);
 };
 
 

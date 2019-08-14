@@ -14,19 +14,14 @@
 
 syntax = "proto3";
 
-option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
-
 package helloworld;
 
 // The greeting service definition.
 service Greeter {
   // Sends a greeting - RPC method
   rpc SayHello (HelloRequest) returns (HelloReply) {}
-  // Sends another greeting - another RPC method
-  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+  // Checks if entry is palindromic- another RPC method
+  rpc IsPalindromic (HelloRequest) returns (CheckReply) {}
 }
 
 // The request message containing the user's name.
@@ -37,4 +32,9 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+}
+
+// The response message containing check result
+message CheckReply {
+  bool result = 1;
 }

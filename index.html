@@ -13,7 +13,8 @@
                 <input type="text" id="name-field">
             </div>
             <button class="send-button">Send</button>
-            <p>gRPC says: <span class="name">...</span></p>
+            <p>gRPC says: <span class="hello-name">...</span></p>
+            <p><span class="name"></span> <span class="check"></span></p>
         </div>
         <div class="response">
         </div>
@@ -77,8 +78,12 @@
         display: flex;
         margin-top: 80px;
     }
-    .name {
+    .hello-name {
         padding-left: 40px;
+    }
+    .check {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 </style>
 <script src="./dist/main.js"></script>

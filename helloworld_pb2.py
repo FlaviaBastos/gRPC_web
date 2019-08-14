@@ -19,8 +19,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='helloworld.proto',
   package='helloworld',
   syntax='proto3',
-  serialized_options=_b('\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW'),
-  serialized_pb=_b('\n\x10helloworld.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2\x8e\x01\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x43\n\rSayHelloAgain\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
+  serialized_options=None,
+  serialized_pb=_b('\n\x10helloworld.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x1c\n\nCheckReply\x12\x0e\n\x06result\x18\x01 \x01(\x08\x32\x8e\x01\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x12\x43\n\rIsPalindromic\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.CheckReply\"\x00\x62\x06proto3')
 )
 
 
@@ -87,8 +87,40 @@ _HELLOREPLY = _descriptor.Descriptor(
   serialized_end=91,
 )
 
+
+_CHECKREPLY = _descriptor.Descriptor(
+  name='CheckReply',
+  full_name='helloworld.CheckReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='result', full_name='helloworld.CheckReply.result', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=93,
+  serialized_end=121,
+)
+
 DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
 DESCRIPTOR.message_types_by_name['HelloReply'] = _HELLOREPLY
+DESCRIPTOR.message_types_by_name['CheckReply'] = _CHECKREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), dict(
@@ -105,8 +137,14 @@ HelloReply = _reflection.GeneratedProtocolMessageType('HelloReply', (_message.Me
   ))
 _sym_db.RegisterMessage(HelloReply)
 
+CheckReply = _reflection.GeneratedProtocolMessageType('CheckReply', (_message.Message,), dict(
+  DESCRIPTOR = _CHECKREPLY,
+  __module__ = 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:helloworld.CheckReply)
+  ))
+_sym_db.RegisterMessage(CheckReply)
 
-DESCRIPTOR._options = None
+
 
 _GREETER = _descriptor.ServiceDescriptor(
   name='Greeter',
@@ -114,8 +152,8 @@ _GREETER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=94,
-  serialized_end=236,
+  serialized_start=124,
+  serialized_end=266,
   methods=[
   _descriptor.MethodDescriptor(
     name='SayHello',
@@ -127,12 +165,12 @@ _GREETER = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='SayHelloAgain',
-    full_name='helloworld.Greeter.SayHelloAgain',
+    name='IsPalindromic',
+    full_name='helloworld.Greeter.IsPalindromic',
     index=1,
     containing_service=None,
     input_type=_HELLOREQUEST,
-    output_type=_HELLOREPLY,
+    output_type=_CHECKREPLY,
     serialized_options=None,
   ),
 ])

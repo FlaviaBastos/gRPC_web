@@ -32,8 +32,9 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
     def SayHello(self, request, context):
         return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
 
-    def SayHelloAgain(self, request, context):
-        return helloworld_pb2.HelloReply(message='Hello again, %s!' % request.name)
+    def IsPalindromic(self, request, context):
+        name = request.name.lower()
+        return helloworld_pb2.CheckReply(result=all(name[i] == name[-(i + 1)] for i in [0, len(name) -1]))
 
 
 def serve():

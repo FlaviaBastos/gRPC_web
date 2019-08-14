@@ -19,10 +19,10 @@ class GreeterStub(object):
         request_serializer=helloworld__pb2.HelloRequest.SerializeToString,
         response_deserializer=helloworld__pb2.HelloReply.FromString,
         )
-    self.SayHelloAgain = channel.unary_unary(
-        '/helloworld.Greeter/SayHelloAgain',
+    self.IsPalindromic = channel.unary_unary(
+        '/helloworld.Greeter/IsPalindromic',
         request_serializer=helloworld__pb2.HelloRequest.SerializeToString,
-        response_deserializer=helloworld__pb2.HelloReply.FromString,
+        response_deserializer=helloworld__pb2.CheckReply.FromString,
         )
 
 
@@ -37,8 +37,8 @@ class GreeterServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def SayHelloAgain(self, request, context):
-    """Sends another greeting - another RPC method
+  def IsPalindromic(self, request, context):
+    """Checks if entry is palindromic- another RPC method
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -52,10 +52,10 @@ def add_GreeterServicer_to_server(servicer, server):
           request_deserializer=helloworld__pb2.HelloRequest.FromString,
           response_serializer=helloworld__pb2.HelloReply.SerializeToString,
       ),
-      'SayHelloAgain': grpc.unary_unary_rpc_method_handler(
-          servicer.SayHelloAgain,
+      'IsPalindromic': grpc.unary_unary_rpc_method_handler(
+          servicer.IsPalindromic,
           request_deserializer=helloworld__pb2.HelloRequest.FromString,
-          response_serializer=helloworld__pb2.HelloReply.SerializeToString,
+          response_serializer=helloworld__pb2.CheckReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
