@@ -25,6 +25,11 @@ To run this app locally (it assumes you have Docker installed):
 Changes made to file `client.js` need to be recompiled. In this case, from inside the client container, stop the python web server, re-compile the js code with `npx webpack client.js` and re-rerun the web server. Reload index.html in the browser.
 
 
+## Resources
+- [gRPC official docs](grpc.io)
+- [Protocol Buffers Developer Guide](developers.google.com/protocol-buffers/docs/overview)
+- [Protocol Buffers Language Guide](developers.google.com/protocol-buffers/docs/proto)
+
 ## Contributing
 
 This repository was created as a prototype to test gRPC and gRPC-WEB and will not accept pull requests.
