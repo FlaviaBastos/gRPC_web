@@ -1,9 +1,3 @@
-# build with: docker build -f Dockerfile -t image_name .
-# run with: docker run -it --name container_name image_name /bin/bash
-
-# run exposing ports and sharing volume:
-# docker run -it --name container_name -p 50051:50051 --mount type=bind,src=/home/lala/code/grpc/aaa,dst=/src image_name /bin/bash
-
 FROM python
 
 RUN python -m pip install --upgrade pip
@@ -34,5 +28,3 @@ RUN unzip /usr/local/protoc.zip
 # install protoc-gen-grpc-web
 RUN wget -O /usr/local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/1.0.6/protoc-gen-grpc-web-1.0.6-linux-x86_64
 RUN chmod +x /usr/local/bin/protoc-gen-grpc-web
-
-COPY . ./src

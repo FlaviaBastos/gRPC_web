@@ -1,0 +1,37 @@
+# run: docker-compose up -d
+version: '3'
+services:
+  common:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: common
+  server:
+    working_dir: /src
+    command: python greeter_server.py
+    volumes:
+      - ./server:/src
+    depends_on:
+      - common
+    ports:
+      - 50051:50051
+    image: common
+  envoy:
+    build:
+      context: .
+      dockerfile: envoy.Dockerfile
+    image: envoy
+    ports:
+      - "8080:8080"
+    links:
+      - server
+  client:
+    working_dir: /src
+    command: python -m http.server 8081
+    volumes:
+      - ./client:/src
+    depends_on:
+      - common
+    ports:
+      - 8081:8081
+    image: common
