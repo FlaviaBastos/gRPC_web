@@ -12,6 +12,10 @@ To run this app locally (it assumes you have Docker installed 🐋):
 * Run `docker-compose up -d`
 * In the browser, navigate to localhost:8081/index.html
 
+This is what it looks like 👀:
+
+![gRPC test screen shot](https://github.com/FlaviaBastos/gRPC_web/blob/master/gRPC_web_palindrome_test.png "gRPC - palindrome test")
+
 ### Note ✏
 
 Changes made to file `client.js` need to be recompiled. In this case, from inside the client container (use `docker exec -it container_name /bin/bash` to access the container), stop the python web server, re-compile the js code with `npx webpack client.js` and re-rerun the web server. Reload index.html in the browser.
