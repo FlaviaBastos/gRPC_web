@@ -1,6 +1,7 @@
 # gRPC-Web and Python prototype 🦄
 
 This is a prototype application to test gRPC and gRPC-Web. It has a Python backend and a JS frontend.
+The JS client takes a string from user input and test if it's a palindrome.
 
 ## Steps to run the app locally 💻:
 
